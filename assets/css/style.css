@@ -1336,3 +1336,30 @@ textarea.input-field {
   .about-banner { max-width: 450px; }
 
 }
+.whatsapp-float {
+    position: fixed;
+    right: 20px;
+    bottom: 88px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 22px rgba(0,0,0,.25);
+    z-index: 9999;
+    text-decoration: none;
+  }
+  .whatsapp-float ion-icon {
+    font-size: 30px;
+    color: #fff;
+  }
+  .whatsapp-float:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.28);
+  }
+  @media (max-width: 480px){
+    .whatsapp-float { right: 14px; bottom: 14px; width: 52px; height: 52px; }
+    .whatsapp-float ion-icon { font-size: 28px; }
+  }
