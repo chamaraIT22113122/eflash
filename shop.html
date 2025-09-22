@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Eflash</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+  <style>
+    .shop-main {
+      padding-top: 110px;
+      min-height: 100vh;
+      background: var(--bg-primary);
+    }
+    .shop-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--raw-seinna);
+      margin-bottom: 40px;
+      font-family: var(--ff-poppins);
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+    .product-card {
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.08);
+      width: 260px;
+      padding: 24px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .product-card:hover {
+      box-shadow: 0 8px 32px rgba(37,117,252,0.13);
+      transform: translateY(-4px) scale(1.03);
+    }
+    .product-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      background: #fff;
+    }
+    .product-name {
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+      font-family: var(--ff-poppins);
+      text-align: center;
+    }
+    .product-desc {
+      color: var(--color-secondary);
+      font-size: 1rem;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .product-price {
+      color: var(--raw-seinna);
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+    .add-to-cart-btn {
+      background: var(--raw-seinna);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 1rem;
+      font-family: var(--ff-poppins);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .add-to-cart-btn:hover {
+      background: var(--scarlet);
+    }
+    @media (max-width: 700px) {
+      .shop-main { padding-top: 80px; }
+      .product-grid { gap: 18px; }
+      .product-card { width: 95vw; max-width: 340px; }
+      .product-img { width: 90vw; max-width: 300px; height: auto; }
+    }
+    .modal-slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    .slider-arrow {
+      background: rgba(0,0,0,0.3);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      transition: background 0.2s;
+    }
+    .slider-arrow-left { left: -18px; }
+    .slider-arrow-right { right: -18px; }
+    .slider-arrow:hover { background: var(--raw-seinna); }
+    .modal-thumbnails {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .modal-thumbnails img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: border 0.2s;
+    }
+    .modal-thumbnails img.active {
+      border-color: var(--raw-seinna);
+    }
+    .category-bar {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .category-btn {
+      background: var(--bg-secondary);
+      color: var(--color-primary);
+      border: 2px solid var(--raw-seinna);
+      border-radius: 8px;
+      padding: 8px 22px;
+      font-size: 1rem;
+      font-family: var(--ff-poppins);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .category-btn.active, .category-btn:hover {
+      background: var(--raw-seinna);
+      color: #fff;
+    }
+    .view-btn {
+      background: var(--color-primary);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 1rem;
+      font-family: var(--ff-poppins);
+      cursor: pointer;
+      margin-bottom: 8px;
+      margin-right: 8px;
+      transition: background 0.2s;
+    }
+    .view-btn:hover {
+      background: var(--scarlet);
+      color: #fff;
+    }
+    .product-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.55); /* More transparent background */
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.2s;
+    }
+    .product-modal-content {
+      background: var(--bg-secondary);
+      border-radius: 28px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 1.5px 8px rgba(37,117,252,0.08);
+      padding: 48px 48px 36px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 900px;
+      min-width: 340px;
+      min-height: 520px;
+      position: relative;
+      animation: fadeInModal 0.35s cubic-bezier(.4,0,.2,1);
+    }
+    .product-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10001;
+      text-shadow: 0 2px 8px #000;
+      transition: color 0.2s;
+    }
+    .product-modal-close:hover {
+      color: var(--raw-seinna);
+    }
+    .modal-product-img {
+      width: 420px;
+      height: 420px;
+      max-width: 90vw;
+      max-height: 65vh;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      background: #fff;
+      box-shadow: 0 4px 24px rgba(37,117,252,0.10);
+      transition: box-shadow 0.2s, border 0.2s;
+    }
+    .modal-product-img:hover {
+      box-shadow: 0 8px 32px rgba(37,117,252,0.18);
+      border-color: var(--scarlet);
+    }
+    .modal-product-info {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-product-name {
+      font-size: 1.3rem;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+      font-family: var(--ff-poppins);
+    }
+    .modal-product-desc {
+      color: var(--color-secondary);
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .modal-product-price {
+      color: var(--raw-seinna);
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+    .modal-add-to-cart {
+      display: block;
+      margin: 22px auto 0 auto;
+      align-self: center;
+      background: linear-gradient(90deg, var(--raw-seinna) 60%, var(--scarlet) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 38px;
+      font-size: 1.1rem;
+      font-family: var(--ff-poppins);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .modal-add-to-cart:hover {
+      background: linear-gradient(90deg, var(--scarlet) 60%, var(--raw-seinna) 100%);
+      box-shadow: 0 4px 24px rgba(37,117,252,0.13);
+      transform: translateY(-2px) scale(1.04);
+    }
+    @media (max-width: 700px) {
+      .product-modal-content { padding: 18px 6vw; }
+      .modal-product-img { width: 90vw; max-width: 300px; height: auto; }
+    }
+    @media (max-width: 1000px) {
+      .product-modal-content {
+        max-width: 98vw;
+        min-width: unset;
+        padding: 18px 2vw;
+      }
+      .modal-product-img {
+        width: 90vw;
+        max-width: 98vw;
+        height: auto;
+        max-height: 60vh;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); }
+      to { transform: scale(1); }
+    }
+    @keyframes fadeInModal {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body id="top" class="dark_theme">
+  <!-- HEADER -->
+  <header class="header" data-header>
+    <div class="container">
+      <h1 class="h1 logo">
+        <a href="index.html">
+          <img src="./assets/images/logo.png" alt="" width="150">
+        </a>
+      </h1>
+      <div class="navbar-actions">
+        <button class="theme-btn" aria-label="Change Theme" title="Change Theme" data-theme-btn>
+          <span class="icon"></span>
+        </button>
+      </div>
+      <button class="nav-toggle-btn" aria-label="Toggle Menu" title="Toggle Menu" data-nav-toggle-btn>
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+      </button>
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+          <li><a href="index.html#home" class="navbar-link">Home.</a></li>
+          <li><a href="index.html#about" class="navbar-link">About.</a></li>
+          <li><a href="portfolio.html" class="navbar-link">Portfolio.</a></li>
+          <li><a href="shop.html" class="navbar-link active">Shop.</a></li>
+          <li><a href="index.html#contact" class="navbar-link">Contact.</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <a class="whatsapp-float" href="https://wa.me/94702481691?text=Hello%20Eflash!%20I%20found%20you%20on%20your%20website%20and%20I%E2%80%99d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+  <main class="shop-main">
+    <div class="container">
+      <h2 class="shop-title">Shop Our Products</h2>
+      <!-- Category Filter -->
+      <div class="category-bar">
+        <button class="category-btn active" data-category="all">All</button>
+        <button class="category-btn" data-category="clothes">Clothes</button>
+        <button class="category-btn" data-category="electronics">Electronics</button>
+        <button class="category-btn" data-category="decor">Decor</button>
+      </div>
+      <div class="product-grid">
+        <!-- Example Product Cards -->
+        <div class="product-card" data-category="clothes">
+          <img src="./assets/images/imgs/17.jpg" alt="T-shirt" class="product-img" data-gallery='["./assets/images/imgs/17.jpg","./assets/images/imgs/22.jpg"]'>
+          <div class="product-name">Classic T-shirt</div>
+          <div class="product-desc">Comfortable cotton T-shirt in various sizes and colors.</div>
+          <div class="product-price">$19.99</div>
+          <button class="view-btn">View</button>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="electronics">
+          <img src="./assets/images/imgs/Elitebook 840 g2 touch.jpg" alt="Laptop" class="product-img" data-gallery='["./assets/images/imgs/Elitebook 840 g2 touch.jpg","./assets/images/imgs/3.5.png"]'>
+          <div class="product-name">Elitebook 840 G2</div>
+          <div class="product-desc">Refurbished business laptop, 8GB RAM, 256GB SSD.</div>
+          <div class="product-price">$299.00</div>
+          <button class="view-btn">View</button>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="electronics">
+          <img src="./assets/images/imgs/malshan JBL.jpg" alt="JBL Speaker" class="product-img" data-gallery='["./assets/images/imgs/malshan JBL.jpg","./assets/images/imgs/2.png"]'>
+          <div class="product-name">JBL Bluetooth Speaker</div>
+          <div class="product-desc">Portable wireless speaker with deep bass and long battery life.</div>
+          <div class="product-price">$49.99</div>
+          <button class="view-btn">View</button>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="decor">
+          <img src="./assets/images/imgs/Peony cake deco flayr 1.jpg" alt="Cake Decor" class="product-img" data-gallery='["./assets/images/imgs/Peony cake deco flayr 1.jpg","./assets/images/imgs/1.png"]'>
+          <div class="product-name">Peony Cake Decor</div>
+          <div class="product-desc">Handmade peony flower cake decoration for special occasions.</div>
+          <div class="product-price">$12.50</div>
+          <button class="view-btn">View</button>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <!-- Add more product cards as needed -->
+      </div>
+    </div>
+    <!-- Product View Modal -->
+    <div id="productModal" class="product-modal">
+      <div class="product-modal-content">
+        <span class="product-modal-close" id="productModalClose">&times;</span>
+        <div class="modal-slider">
+          <button class="slider-arrow slider-arrow-left" id="sliderPrev">&#10094;</button>
+          <img id="modalProductImg" src="" alt="Product" class="modal-product-img">
+          <button class="slider-arrow slider-arrow-right" id="sliderNext">&#10095;</button>
+        </div>
+        <div class="modal-thumbnails" id="modalThumbnails"></div>
+        <div class="modal-product-info">
+          <div class="modal-product-name"></div>
+          <div class="modal-product-desc"></div>
+          <div class="modal-product-price"></div>
+          <button class="add-to-cart-btn modal-add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <img src="./assets/images/logo.png" alt="" width="150">
+      <p class="copyright">
+        &copy; <a href="#">Eflash.tech</a>. All rights reserved
+      </p>
+    </div>
+  </footer>
+  <a href="#top" class="go-top" data-go-top title="Go to Top">
+    <ion-icon name="arrow-up"></ion-icon>
+  </a>
+  <script src="./assets/js/script.js"></script>
+  <script>
+    // Category filter logic
+    document.addEventListener('DOMContentLoaded', function() {
+      const categoryBtns = document.querySelectorAll('.category-btn');
+      const productCards = document.querySelectorAll('.product-card');
+      categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          categoryBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const cat = this.getAttribute('data-category');
+          productCards.forEach(card => {
+            if (cat === 'all' || card.getAttribute('data-category') === cat) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+      // Product view modal logic with slider
+      const modal = document.getElementById('productModal');
+      const modalImg = document.getElementById('modalProductImg');
+      const modalName = document.querySelector('.modal-product-name');
+      const modalDesc = document.querySelector('.modal-product-desc');
+      const modalPrice = document.querySelector('.modal-product-price');
+      const modalAddToCart = document.querySelector('.modal-add-to-cart');
+      const modalClose = document.getElementById('productModalClose');
+      const modalThumbnails = document.getElementById('modalThumbnails');
+      const sliderPrev = document.getElementById('sliderPrev');
+      const sliderNext = document.getElementById('sliderNext');
+      let gallery = [];
+      let currentIdx = 0;
+      function showImage(idx) {
+        if (!gallery.length) return;
+        currentIdx = idx;
+        modalImg.src = gallery[idx];
+        // Highlight thumbnail
+        Array.from(modalThumbnails.children).forEach((thumb, i) => {
+          thumb.classList.toggle('active', i === idx);
+        });
+      }
+      document.querySelectorAll('.view-btn').forEach((btn, idx) => {
+        btn.addEventListener('click', function() {
+          const card = btn.closest('.product-card');
+          const img = card.querySelector('.product-img');
+          gallery = [];
+          try {
+            gallery = JSON.parse(img.getAttribute('data-gallery'));
+          } catch { gallery = [img.src]; }
+          modalName.textContent = card.querySelector('.product-name').textContent;
+          modalDesc.textContent = card.querySelector('.product-desc').textContent;
+          modalPrice.textContent = card.querySelector('.product-price').textContent;
+          // Build thumbnails
+          modalThumbnails.innerHTML = '';
+          gallery.forEach((src, i) => {
+            const thumb = document.createElement('img');
+            thumb.src = src;
+            thumb.alt = 'Product thumbnail';
+            thumb.className = i === 0 ? 'active' : '';
+            thumb.onclick = () => showImage(i);
+            modalThumbnails.appendChild(thumb);
+          });
+          showImage(0);
+          modal.style.display = 'flex';
+        });
+      });
+      sliderPrev.onclick = function(e) {
+        e.stopPropagation();
+        if (!gallery.length) return;
+        showImage((currentIdx - 1 + gallery.length) % gallery.length);
+      };
+      sliderNext.onclick = function(e) {
+        e.stopPropagation();
+        if (!gallery.length) return;
+        showImage((currentIdx + 1) % gallery.length);
+      };
+      modalClose.onclick = function() { modal.style.display = 'none'; };
+      modal.onclick = function(e) { if (e.target === modal) modal.style.display = 'none'; };
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') modal.style.display = 'none'; });
+      // Modal Add to Cart (optional: you can add logic here)
+      modalAddToCart.onclick = function() { modal.style.display = 'none'; };
+    });
+  </script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
