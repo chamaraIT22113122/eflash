@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Portfolio | Eflash</title>
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="icon" href="favicon.svg" type="image/svg+xml">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+</head>
+<body id="top" class="dark_theme">
+
+	<!-- HEADER (copied from index.html) -->
+	<header class="header" data-header>
+		<div class="container">
+			<h1 class="h1 logo">
+				<a href="index.html">
+					<img src="./assets/images/logo.png" alt="" width="150">
+				</a>
+			</h1>
+			<div class="navbar-actions">
+				<button class="theme-btn" aria-label="Change Theme" title="Change Theme" data-theme-btn>
+					<span class="icon"></span>
+				</button>
+			</div>
+			<button class="nav-toggle-btn" aria-label="Toggle Menu" title="Toggle Menu" data-nav-toggle-btn>
+				<span class="one"></span>
+				<span class="two"></span>
+				<span class="three"></span>
+			</button>
+			<nav class="navbar" data-navbar>
+				<ul class="navbar-list">
+					<li><a href="index.html#home" class="navbar-link">Home.</a></li>
+					<li><a href="index.html#about" class="navbar-link">About.</a></li>
+					<li><a href="portfolio.html" class="navbar-link active">Portfolio.</a></li>
+					<li><a href="index.html#shop" class="navbar-link">Shop.</a></li>
+					<li><a href="index.html#contact" class="navbar-link">Contact.</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<a class="whatsapp-float" href="https://wa.me/94702481691?text=Hello%20Eflash!%20I%20found%20you%20on%20your%20website%20and%20I%E2%80%99d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+		<ion-icon name="logo-whatsapp"></ion-icon>
+	</a>
+
+
+		<main>
+			<article class="container" style="padding-top:110px;">
+
+			<!-- Portfolio Gallery Sections -->
+			<section class="gallery-section" id="portfolio">
+                
+				<h2 class="h2 section-title">Social Media Posts</h2>
+				<div class="gallery-grid">
+					<img src="./assets/images/imgs/1.png" alt="Social Media Post 1">
+					<img src="./assets/images/imgs/2.png" alt="Social Media Post 2">
+					<img src="./assets/images/imgs/2.5.png" alt="Social Media Post 3">
+				</div>
+			</section>
+			<section class="gallery-section">
+				<h2 class="h2 section-title">Banners</h2>
+				<div class="gallery-grid">
+					<img src="./assets/images/hero-banner.png" alt="Banner 1">
+					<img src="./assets/images/hero-banner2.png" alt="Banner 2">
+					<img src="./assets/images/about-banner.png" alt="Banner 3">
+				</div>
+			</section>
+			<section class="gallery-section">
+				<h2 class="h2 section-title">Flayers</h2>
+				<div class="gallery-grid">
+					<img src="./assets/images/imgs/Peony cake deco flayr 1.jpg" alt="Flayer 1">
+					<img src="./assets/images/imgs/22.jpg" alt="Flayer 2">
+				</div>
+			</section>
+			<section class="gallery-section">
+				<h2 class="h2 section-title">Logos</h2>
+				<div class="gallery-grid">
+					<img src="./assets/images/logo.png" alt="Logo 1">
+					<img src="./assets/images/vs-code.png" alt="Logo 2">
+				</div>
+			</section>
+			</article>
+
+			<!-- Image Modal Popup -->
+			<div id="imgModal" class="img-modal">
+				<span class="img-modal-close" id="imgModalClose">&times;</span>
+				<img class="img-modal-content" id="imgModalImg" alt="Gallery Image">
+			</div>
+		<style>
+			.gallery-section {
+				margin-bottom: 70px;
+				padding: 40px 0 0 0;
+				border-radius: 18px;
+				background: var(--bg-secondary);
+				box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+			}
+			.gallery-section .section-title {
+				margin-bottom: 32px;
+				text-align: center;
+				color: var(--raw-seinna);
+				font-size: 2.2rem;
+				letter-spacing: 1px;
+			}
+			.gallery-grid {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 32px;
+				justify-content: center;
+				padding-bottom: 32px;
+			}
+			.gallery-grid img {
+				width: 240px;
+				height: 240px;
+				object-fit: cover;
+				border-radius: 16px;
+				box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+				background: #fff;
+				transition: transform 0.25s, box-shadow 0.25s;
+				border: 3px solid transparent;
+				cursor: pointer;
+			}
+			.gallery-grid img:hover {
+				transform: scale(1.07) rotate(-1deg);
+				box-shadow: 0 8px 32px rgba(37,117,252,0.18);
+				border-color: var(--raw-seinna);
+				z-index: 2;
+			}
+			@media (max-width: 900px) {
+				.gallery-grid img {
+					width: 180px;
+					height: 180px;
+				}
+			}
+			@media (max-width: 700px) {
+				.gallery-section {
+					padding: 24px 0 0 0;
+				}
+				.gallery-grid {
+					flex-direction: column;
+					align-items: center;
+					gap: 20px;
+				}
+				.gallery-grid img {
+					width: 90vw;
+					max-width: 340px;
+					height: auto;
+				}
+			}
+		</style>
+		<style>
+			.img-modal {
+				display: none;
+				position: fixed;
+				z-index: 9999;
+				left: 0;
+				top: 0;
+				width: 100vw;
+				height: 100vh;
+				overflow: auto;
+				background: rgba(0,0,0,0.85);
+				align-items: center;
+				justify-content: center;
+				animation: fadeIn 0.2s;
+			}
+			.img-modal-content {
+				margin: auto;
+				display: block;
+				max-width: 90vw;
+				max-height: 80vh;
+				border-radius: 16px;
+				box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+				animation: zoomIn 0.2s;
+			}
+			.img-modal-close {
+				position: absolute;
+				top: 30px;
+				right: 50px;
+				color: #fff;
+				font-size: 3rem;
+				font-weight: bold;
+				cursor: pointer;
+				z-index: 10001;
+				text-shadow: 0 2px 8px #000;
+				transition: color 0.2s;
+			}
+			.img-modal-close:hover {
+				color: var(--raw-seinna);
+			}
+			@media (max-width: 700px) {
+				.img-modal-close {
+					top: 10px;
+					right: 20px;
+					font-size: 2.2rem;
+				}
+				.img-modal-content {
+					max-width: 98vw;
+					max-height: 60vh;
+				}
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to { opacity: 1; }
+			}
+			@keyframes zoomIn {
+				from { transform: scale(0.8); }
+				to { transform: scale(1); }
+			}
+		</style>
+	</main>
+
+	<!-- FOOTER (copied from index.html) -->
+	<footer class="footer">
+		<div class="container">
+			<img src="./assets/images/logo.png" alt="" width="150">
+			<p class="copyright">
+				&copy; <a href="#">Eflash.tech</a>. All rights reserved
+			</p>
+		</div>
+	</footer>
+
+	<a href="#top" class="go-top" data-go-top title="Go to Top">
+		<ion-icon name="arrow-up"></ion-icon>
+	</a>
+
+		<script src="./assets/js/script.js"></script>
+		<script>
+			// Image Modal Popup Logic
+			document.addEventListener('DOMContentLoaded', function() {
+				const modal = document.getElementById('imgModal');
+				const modalImg = document.getElementById('imgModalImg');
+				const modalClose = document.getElementById('imgModalClose');
+				document.querySelectorAll('.gallery-grid img').forEach(img => {
+					img.style.cursor = 'pointer';
+					img.addEventListener('click', function() {
+						modal.style.display = 'flex';
+						modalImg.src = this.src;
+						modalImg.alt = this.alt;
+					});
+				});
+				modalClose.onclick = function() {
+					modal.style.display = 'none';
+				};
+				modal.onclick = function(e) {
+					if (e.target === modal) modal.style.display = 'none';
+				};
+				document.addEventListener('keydown', function(e) {
+					if (e.key === 'Escape') modal.style.display = 'none';
+				});
+			});
+		</script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
