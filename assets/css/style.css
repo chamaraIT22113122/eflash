@@ -63,10 +63,9 @@
   background: var(--bg-secondary);
   border-radius: 16px;
   box-shadow: 0 2px 18px rgba(0,0,0,0.08);
-  flex: 0 0 calc(25% - 18px);
-  max-width: calc(25% - 18px);
+  flex: 0 0 25%;
+  max-width: 25%;
   min-width: 0;
-  margin: 0 9px;
   padding: 24px 12px 18px 12px;
   display: flex;
   flex-direction: column;
@@ -106,13 +105,13 @@
   margin-bottom: 14px;
 }
 @media (max-width: 1200px) {
-  .slideshow-card { flex: 0 0 calc(33.3333% - 16px); max-width: calc(33.3333% - 16px); margin: 0 8px; }
+  .slideshow-card { flex: 0 0 33.3333%; max-width: 33.3333%; }
 }
 @media (max-width: 900px) {
-  .slideshow-card { flex: 0 0 calc(50% - 12px); max-width: calc(50% - 12px); margin: 0 6px; }
+  .slideshow-card { flex: 0 0 50%; max-width: 50%; }
 }
 @media (max-width: 600px) {
-  .slideshow-card { flex: 0 0 100%; max-width: 100%; margin: 0; }
+  .slideshow-card { flex: 0 0 100%; max-width: 100%; }
   .slideshow-card img { width: 90vw; max-width: 300px; height: auto; }
 }
 @media (max-width: 1200px) {
@@ -455,11 +454,6 @@ ion-icon { pointer-events: none; }
 ::selection {
   background: var(--color-primary);
   color: var(--bg-primary);
-}
-
-img {
-  max-width: 100%;
-  height: auto;
 }
 
 html {
