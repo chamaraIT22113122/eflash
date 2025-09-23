@@ -457,6 +457,11 @@ ion-icon { pointer-events: none; }
   color: var(--bg-primary);
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 html {
   font-family: var(--ff-roboto);
   scroll-behavior: smooth;
