@@ -694,19 +694,21 @@ body.active { overflow: hidden; }
 
 .nav-toggle-btn.active .three { transform: rotate(90deg) translateX(3px); }
 
+
 .navbar {
   position: fixed;
-  background: var(--bg-secondary);
+  background: var(--bg-secondary, #222);
   top: 100%;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: grid;
   place-items: center;
   visibility: hidden;
   transition: 0.75s cubic-bezier(0.71, 0.01, 0.24, 0.99);
   transition-delay: 0.5s;
-  z-index: 1;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 
 .navbar.active {
@@ -721,16 +723,18 @@ body.active { overflow: hidden; }
   overflow: hidden;
 }
 
+
 .navbar-link {
   position: relative;
   width: max-content;
   margin-inline: auto;
-  color: var(--color-primary);
+  color: var(--color-primary, #fff) !important;
   font-family: var(--ff-poppins);
   font-size: var(--fs-1);
   padding: 10px;
   transform: translateY(50px);
   transition: 0.75s cubic-bezier(0.68, -0.55, 0.27, 2);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
 .navbar.active .navbar-link {
