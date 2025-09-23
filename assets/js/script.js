@@ -1,3 +1,63 @@
+// Shuffle slideshow cards for random order
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.querySelector('.slideshow-track');
+  if (!track) return;
+  const cards = Array.from(track.children);
+  // Fisher-Yates shuffle
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    track.appendChild(cards[j]);
+    cards[j] = cards[i];
+  }
+});
+// Responsive Slideshow Logic
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.querySelector('.slideshow-container');
+  if (!container) return;
+  const track = container.querySelector('.slideshow-track');
+  const cards = Array.from(track.children);
+  const leftBtn = container.querySelector('.slideshow-arrow.left');
+  const rightBtn = container.querySelector('.slideshow-arrow.right');
+  let currentIndex = 0;
+
+  function getVisibleCount() {
+    if (window.innerWidth <= 600) return 1;
+    if (window.innerWidth <= 900) return 2;
+    if (window.innerWidth <= 1200) return 3;
+    return 4;
+  }
+
+  function scrollToIndex(index) {
+    const visible = getVisibleCount();
+    const maxIndex = Math.max(0, cards.length - visible);
+    currentIndex = Math.max(0, Math.min(index, maxIndex));
+    const cardWidth = cards[0].offsetWidth + 16; // 16px margin (8px each side)
+    track.scrollTo({ left: currentIndex * cardWidth, behavior: 'smooth' });
+  }
+
+  leftBtn.addEventListener('click', function() {
+    scrollToIndex(currentIndex - getVisibleCount());
+  });
+  rightBtn.addEventListener('click', function() {
+    scrollToIndex(currentIndex + getVisibleCount());
+  });
+
+  window.addEventListener('resize', function() {
+    scrollToIndex(currentIndex);
+  });
+
+  // Initialize
+  scrollToIndex(0);
+
+  // Auto-rotate the slideshow every 3 seconds
+  setInterval(function() {
+    const visible = getVisibleCount();
+    const maxIndex = Math.max(0, cards.length - visible);
+    let nextIndex = currentIndex + visible;
+    if (nextIndex > maxIndex) nextIndex = 0;
+    scrollToIndex(nextIndex);
+  }, 3000);
+});
 'use strict';
 
 // Header search for all pages
