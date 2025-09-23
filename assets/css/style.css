@@ -1599,6 +1599,19 @@ textarea.input-field {
   }
 
   .footer .logo { margin-bottom: 0; }
+  @media (max-width: 768px) {
+    .footer .container {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .footer .logo {
+      margin-bottom: 15px;
+      margin-right: 0;
+    }
+  }
+  .footer .logo {
+    margin-left: 5000px; /* This will push the logo to the right */
+  }
 
 }
 
@@ -1665,6 +1678,6 @@ textarea.input-field {
     box-shadow: 0 12px 28px rgba(0,0,0,.28);
   }
   @media (max-width: 480px){
-    .whatsapp-float { right: 14px; bottom: 14px; width: 52px; height: 52px; }
+    .whatsapp-float { right: 20px; bottom: 80px; width: 52px; height: 52px; }
     .whatsapp-float ion-icon { font-size: 28px; }
   }
