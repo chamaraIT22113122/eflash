@@ -1,5 +1,63 @@
 'use strict';
 
+// Header search for all pages
+document.addEventListener('DOMContentLoaded', function() {
+  var searchForm = document.getElementById('header-search-form');
+  var searchInput = document.getElementById('header-search-input');
+  if (searchForm && searchInput) {
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var query = searchInput.value.trim().toLowerCase();
+      if (!query) return;
+      // Simple page search: match against known pages
+      var pages = [
+        {name: 'Home', url: 'index.html#home'},
+        {name: 'About', url: 'index.html#about'},
+        {name: 'Portfolio', url: 'Portfolio.html'},
+        {name: 'Shop', url: 'shop.html'},
+        {name: 'Contact', url: 'index.html#contact'}
+      ];
+      var found = pages.find(function(page) {
+        return page.name.toLowerCase().includes(query);
+      });
+      if (found) {
+        window.location.href = found.url;
+      } else {
+        alert('No matching page found.');
+      }
+    });
+  }
+});
+
+// Header search for all pages
+document.addEventListener('DOMContentLoaded', function() {
+  var searchForm = document.getElementById('header-search-form');
+  var searchInput = document.getElementById('header-search-input');
+  if (searchForm && searchInput) {
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var query = searchInput.value.trim().toLowerCase();
+      if (!query) return;
+      // Simple page search: match against known pages
+      var pages = [
+        {name: 'Home', url: 'index.html'},
+        {name: 'About', url: 'index.html#about'},
+        {name: 'Portfolio', url: 'Portfolio.html'},
+        {name: 'Shop', url: 'shop.html'},
+        {name: 'Contact', url: 'index.html#contact'}
+      ];
+      var found = pages.find(function(page) {
+        return page.name.toLowerCase().includes(query);
+      });
+      if (found) {
+        window.location.href = found.url;
+      } else {
+        alert('No matching page found.');
+      }
+    });
+  }
+});
+
 /**
  * element toggle function
  */
