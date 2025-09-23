@@ -152,7 +152,7 @@
     max-width: 25vw;
     margin: 0 8px;
     flex: 0 0 auto;
-    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.5s, transform 0.5s;
   }
   @media (max-width: 1200px) {
     .shop-card { min-width: 33vw; max-width: 33vw; }
@@ -189,7 +189,7 @@
 }
 @media (max-width: 600px) {
   .shop-card { min-width: 90vw; max-width: 90vw; }
-  .shop-slider { min-height: 380px; }
+  .shop-slider { min-height: 700px; }
 }
 /*-----------------------------------*\
  * #SHOP SLIDER
