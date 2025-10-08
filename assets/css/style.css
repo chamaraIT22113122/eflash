@@ -153,48 +153,54 @@
   font-weight: bold;
   margin-bottom: 14px;
 }
-@media (max-width: 00px) {
-  .slideshow-card { flex: 0 0 33.3333%; max-width: 33.3333%; }
+@media (max-width: 1200px) {
+  .slideshow-card { 
+    flex: 0 0 calc(33.333% - 16px);
+    min-width: calc(33.333% - 16px);
+  }
 }
 @media (max-width: 900px) {
-  .slideshow-card { flex: 0 0 50%; max-width: 50%; }
+  .slideshow-card { 
+    flex: 0 0 calc(50% - 16px);
+    min-width: calc(50% - 16px);
+  }
 }
 @media (max-width: 600px) {
-  .slideshow-track { gap: 16px; }
+  .slideshow-track { 
+    gap: 12px;
+    padding: 12px 0;
+  }
   .slideshow-card {
-    flex: 0 0 100%;
-    max-width: 100%;
-    min-width: 100%;
-    flex-basis: 100%;
-    padding: 20px 8px 16px 8px;
-    margin: 0 auto 18px auto;
+    flex: 0 0 calc(100% - 24px);
+    min-width: calc(100% - 24px);
+    padding: 16px 12px;
+    margin: 0 12px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    align-items: center;
   }
   .slideshow-card img {
-    width: 95vw;
-    max-width: 340px;
+    width: 100%;
+    max-width: 280px;
     height: auto;
-    margin-bottom: 16px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .slideshow-card .product-name {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-  }
-  .slideshow-card .product-desc {
-    font-size: 1.05rem;
-    margin-bottom: 10px;
-  }
-  .slideshow-card .product-price {
-    font-size: 1.15rem;
     margin-bottom: 12px;
   }
-}
-@media (max-width: 00px) {
-  .slideshow-card { min-width: 33.3333%; max-width: 33.3333%; flex-basis: 33.3333%; }
+  .slideshow-card .product-name {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  .slideshow-card .product-desc {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .slideshow-card .product-price {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .slideshow-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    margin: 0 6px;
+  }
 }
 @media (max-width: 900px) {
   .slideshow-card { min-width: 50%; max-width: 50%; flex-basis: 50%; }
