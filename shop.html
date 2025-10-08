@@ -107,6 +107,7 @@
       position: relative;
       width: 100%;
       margin-bottom: 12px;
+      padding: 0 24px;
     }
     .slider-arrow {
       background: rgba(0,0,0,0.3);
@@ -123,26 +124,32 @@
       z-index: 2;
       transition: background 0.2s;
     }
-    .slider-arrow-left { left: -18px; }
-    .slider-arrow-right { right: -18px; }
+    .slider-arrow-left { left: 0; }
+    .slider-arrow-right { right: 0; }
     .slider-arrow:hover { background: var(--raw-seinna); }
     .modal-thumbnails {
       display: flex;
       gap: 8px;
       justify-content: center;
       margin-bottom: 14px;
+      flex-wrap: wrap;
+      max-width: 100%;
+      padding: 0 12px;
     }
     .modal-thumbnails img {
-      width: 48px;
-      height: 48px;
-      object-fit: cover;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
       border-radius: 6px;
       border: 2px solid transparent;
       cursor: pointer;
-      transition: border 0.2s;
+      transition: all 0.2s;
+      background: #fff;
+      padding: 4px;
     }
     .modal-thumbnails img.active {
       border-color: var(--raw-seinna);
+      transform: scale(1.1);
     }
     .category-bar {
       display: flex;
@@ -200,13 +207,14 @@
       background: var(--bg-secondary);
       border-radius: 28px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 1.5px 8px rgba(37,117,252,0.08);
-      padding: 48px 48px 36px 48px;
+      padding: 32px 32px 24px 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 900px;
-      min-width: 340px;
-      min-height: 520px;
+      max-width: 90vw;
+      width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
       position: relative;
       animation: fadeInModal 0.35s cubic-bezier(.4,0,.2,1);
     }
@@ -226,11 +234,11 @@
       color: var(--raw-seinna);
     }
     .modal-product-img {
-      width: 420px;
-      height: 420px;
-      max-width: 90vw;
-      max-height: 65vh;
-      object-fit: cover;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
       border-radius: 18px;
       margin-bottom: 18px;
       background: #fff;
@@ -285,19 +293,34 @@
       transform: translateY(-2px) scale(1.04);
     }
     @media (max-width: 700px) {
-      .product-modal-content { padding: 18px 6vw; }
-      .modal-product-img { width: 90vw; max-width: 300px; height: auto; }
+      .product-modal-content { 
+        padding: 16px;
+        width: 95vw;
+      }
+      .modal-product-img { 
+        width: 100%;
+        max-width: 280px;
+      }
+      .modal-thumbnails {
+        gap: 6px;
+      }
+      .modal-thumbnails img {
+        width: 50px;
+        height: 50px;
+      }
+      .slider-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+      }
     }
     @media (max-width: 1000px) {
       .product-modal-content {
-        max-width: 98vw;
-        min-width: unset;
-        padding: 18px 2vw;
+        width: 90vw;
+        padding: 24px;
       }
       .modal-product-img {
-        width: 90vw;
-        max-width: 98vw;
-        height: auto;
+        max-width: 350px;
         max-height: 60vh;
       }
     }
@@ -360,7 +383,8 @@
         <button class="category-btn active" data-category="all">All</button>
         <button class="category-btn" data-category="clothes">Clothes</button>
         <button class="category-btn" data-category="vehical">Vehicles Accessories</button>
-       
+        <button class="category-btn" data-category="watch">Watch</button>
+
       </div>
       <div class="product-grid">
         <!-- Example Product Cards -->
@@ -417,6 +441,40 @@
           <button class="view-btn">View</button>
           <button class="add-to-cart-btn">Add to Cart</button>
         </div>
+        <div class="product-card" data-category="watch">
+            <img src="./assets/images/Shop/watch/1.jpeg" alt="Watch" class="product-img" data-gallery='[
+            "./assets/images/Shop/watch/1.jpeg",
+            "./assets/images/Shop/watch/2.jpeg",
+            "./assets/images/Shop/watch/3.jpeg",
+            "./assets/images/Shop/watch/4.jpeg",
+            "./assets/images/Shop/watch/5.jpeg",
+            "./assets/images/Shop/watch/6.jpeg",
+            "./assets/images/Shop/watch/7.jpeg",
+            "./assets/images/Shop/watch/8.jpeg", 
+            "./assets/images/Shop/watch/9.jpeg",
+            "./assets/images/Shop/watch/10.jpeg",
+            "./assets/images/Shop/watch/11.jpeg",
+            "./assets/images/Shop/watch/12.jpeg",
+            "./assets/images/Shop/watch/13.jpeg",
+            "./assets/images/Shop/watch/14.jpeg",
+            "./assets/images/Shop/watch/15.jpeg",
+            "./assets/images/Shop/watch/16.jpeg",
+            "./assets/images/Shop/watch/17.jpeg",
+            "./assets/images/Shop/watch/18.jpeg",
+            "./assets/images/Shop/watch/19.jpeg",
+            "./assets/images/Shop/watch/20.jpeg",
+            "./assets/images/Shop/watch/21.jpeg",
+            "./assets/images/Shop/watch/22.jpeg",
+            "./assets/images/Shop/watch/23.jpeg",
+            "./assets/images/Shop/watch/24.jpeg",
+            "./assets/images/Shop/watch/25.jpeg",
+            "./assets/images/Shop/watch/27.jpeg"
+            ]'>
+          <div class="product-name">Smart Watch</div>
+          <div class="product-desc">Stay connected and track your fitness with our sleek and stylish smart watch.</div><br><br>
+          <div class="product-price">Rs 13999.00</div>
+          <button class="view-btn">View</button>
+          <button class="add-to-cart-btn">Add to Cart</button>
         
         <!-- Add more product cards as needed -->
       </div>
