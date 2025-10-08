@@ -197,12 +197,24 @@ themeToggleBtn.addEventListener("click", function () {
   if (themeToggleBtn.classList.contains("active")) {
     document.body.classList.remove("dark_theme");
     document.body.classList.add("light_theme");
-
+    // Update logos for light theme
+    const navLogo = document.getElementById("nav-logo");
+    if (navLogo) navLogo.src = "./assets/images/logo.png";
+    const aboutBanner = document.getElementById("about-banner");
+    if (aboutBanner) aboutBanner.src = "./assets/images/about-banner2.png";
+    const footerLogo = document.getElementById("footer-logo");
+    if (footerLogo) footerLogo.src = "./assets/images/logo.png";
     localStorage.setItem("theme", "light_theme");
   } else {
     document.body.classList.add("dark_theme");
     document.body.classList.remove("light_theme");
-
+    // Update logos for dark theme
+    const navLogo = document.getElementById("nav-logo");
+    if (navLogo) navLogo.src = "./assets/images/logo1.png";
+    const aboutBanner = document.getElementById("about-banner");
+    if (aboutBanner) aboutBanner.src = "./assets/images/about-banner.png";
+    const footerLogo = document.getElementById("footer-logo");
+    if (footerLogo) footerLogo.src = "./assets/images/logo1.png";
     localStorage.setItem("theme", "dark_theme");
   }
 
@@ -216,9 +228,25 @@ if (localStorage.getItem("theme") === "light_theme") {
   themeToggleBtn.classList.add("active");
   document.body.classList.remove("dark_theme");
   document.body.classList.add("light_theme");
+  // Update logos for light theme
+  const navLogo = document.getElementById("nav-logo");
+  if (navLogo) navLogo.src = "./assets/images/logo.png";
+  const aboutBanner = document.getElementById("about-banner");
+  if (aboutBanner) aboutBanner.src = "./assets/images/about-banner2.png";
+  const footerLogo = document.getElementById("footer-logo");
+  if (footerLogo) footerLogo.src = "./assets/images/logo.png";
 } else {
   themeToggleBtn.classList.remove("active");
   document.body.classList.remove("light_theme");
+  // Update logos for dark theme
+  const navLogo = document.getElementById("nav-logo");
+  if (navLogo) navLogo.src = "./assets/images/logo1.png";
+  const aboutBanner = document.getElementById("about-banner");
+  if (aboutBanner) aboutBanner.src = "./assets/images/about-banner.png";
+  const footerLogo = document.getElementById("footer-logo");
+  if (footerLogo) footerLogo.src = "./assets/images/logo1.png";
   document.body.classList.add("dark_theme");
+  document.getElementById("nav-logo").src = "./assets/images/logo1.png";
+  document.getElementById("about-banner").src = "./assets/images/about-banner.png";
 }
 
