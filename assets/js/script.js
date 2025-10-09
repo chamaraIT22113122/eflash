@@ -60,6 +60,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 'use strict';
 
+// Initialize theme to light mode on first visit
+document.addEventListener('DOMContentLoaded', function() {
+  if (!localStorage.getItem("theme")) {
+    localStorage.setItem("theme", "light_theme");
+    document.body.classList.remove("dark_theme");
+    document.body.classList.add("light_theme");
+    const themeToggleBtn = document.querySelector("[data-theme-btn]");
+    if (themeToggleBtn) {
+      themeToggleBtn.classList.add("active");
+    }
+    // Set light theme images
+    const navLogo = document.getElementById("nav-logo");
+    if (navLogo) navLogo.src = "./assets/images/logo.png";
+    const aboutBanner = document.getElementById("about-banner");
+    if (aboutBanner) aboutBanner.src = "./assets/images/about-banner2.png";
+    const footerLogo = document.getElementById("footer-logo");
+    if (footerLogo) footerLogo.src = "./assets/images/logo.png";
+  }
+});
+
 // Header search for all pages
 document.addEventListener('DOMContentLoaded', function() {
   var searchForm = document.getElementById('header-search-form');
@@ -221,10 +241,29 @@ themeToggleBtn.addEventListener("click", function () {
 });
 
 /**
- * check & apply last time selected theme from localStorage
+ * Initialize and apply theme
  */
 
-if (localStorage.getItem("theme") === "light_theme") {
+// Set default theme to light if not set
+if (!localStorage.getItem("theme")) {
+  localStorage.setItem("theme", "light_theme");
+}
+
+// Apply theme based on localStorage
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark_theme") {
+  themeToggleBtn.classList.remove("active");
+  document.body.classList.remove("light_theme");
+  document.body.classList.add("dark_theme");
+  // Update logos for dark theme
+  const navLogo = document.getElementById("nav-logo");
+  if (navLogo) navLogo.src = "./assets/images/logo1.png";
+  const aboutBanner = document.getElementById("about-banner");
+  if (aboutBanner) aboutBanner.src = "./assets/images/about-banner.png";
+  const footerLogo = document.getElementById("footer-logo");
+  if (footerLogo) footerLogo.src = "./assets/images/logo1.png";
+} else {
+  // Light theme is default
   themeToggleBtn.classList.add("active");
   document.body.classList.remove("dark_theme");
   document.body.classList.add("light_theme");
@@ -235,18 +274,5 @@ if (localStorage.getItem("theme") === "light_theme") {
   if (aboutBanner) aboutBanner.src = "./assets/images/about-banner2.png";
   const footerLogo = document.getElementById("footer-logo");
   if (footerLogo) footerLogo.src = "./assets/images/logo.png";
-} else {
-  themeToggleBtn.classList.remove("active");
-  document.body.classList.remove("light_theme");
-  // Update logos for dark theme
-  const navLogo = document.getElementById("nav-logo");
-  if (navLogo) navLogo.src = "./assets/images/logo1.png";
-  const aboutBanner = document.getElementById("about-banner");
-  if (aboutBanner) aboutBanner.src = "./assets/images/about-banner.png";
-  const footerLogo = document.getElementById("footer-logo");
-  if (footerLogo) footerLogo.src = "./assets/images/logo1.png";
-  document.body.classList.add("dark_theme");
-  document.getElementById("nav-logo").src = "./assets/images/logo1.png";
-  document.getElementById("about-banner").src = "./assets/images/about-banner.png";
 }
 
