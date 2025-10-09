@@ -1018,6 +1018,22 @@ main { overflow-x: hidden; }
   align-items: center;
   gap: 15px;
   animation: fadeIn 0.5s ease-out forwards;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .skills-box .skills-list,
+  .skills-box.active .tools-list {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-box .skills-list,
+  .skills-box.active .tools-list {
+    gap: 10px;
+    padding: 5px;
+  }
 }
 
 @keyframes fadeIn {
@@ -1038,6 +1054,20 @@ main { overflow-x: hidden; }
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+@media (max-width: 768px) {
+  .skill-card {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-card {
+    width: 60px;
+    height: 60px;
+  }
+}
+
 .skill-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-4);
@@ -1049,6 +1079,20 @@ main { overflow-x: hidden; }
   width: auto;
   height: auto;
   object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .skill-card img {
+    max-width: 35px;
+    max-height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-card img {
+    max-width: 30px;
+    max-height: 30px;
+  }
 }
 
 .skills-box .skills-list li,
