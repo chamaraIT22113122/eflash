@@ -1021,10 +1021,8 @@ main { overflow-x: hidden; }
 }
 
 @keyframes fadeIn {
-
   0% { opacity: 0; }
   100% { opacity: 1; }
-
 }
 
 .skill-card {
@@ -1037,6 +1035,32 @@ main { overflow-x: hidden; }
   border-radius: var(--radius-12);
   box-shadow: var(--shadow-1);
   cursor: help;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-4);
+}
+
+.skill-card img {
+  max-width: 40px;
+  max-height: 40px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.skills-box .skills-list li,
+.skills-box .tools-list li {
+  text-align: center;
+}
+
+.add-to-cart-btn {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  display: inline-block;
 }
 
 .skill-card:hover .tooltip {
